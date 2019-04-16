@@ -1,0 +1,28 @@
+html, body {
+  font-family: 'Noto Sans TC', sans-serif;
+  font-size: 15px;
+}
+ul {
+  padding: 0;
+}
+li {
+  list-style: none;
+}
+
+.search{
+  background-color: #f9f9f9;
+  border-bottom: 1px #b6b6b6 solid;
+  display: flex;
+  input {
+    font-family: 'Noto Sans TC', sans-serif, FontAwesome;
+    width: 100%;
+    border: 0;
+    border-radius: 5px;
+    height: 30px;
+    background: #e4e5e6;
+    text-align: center;
+    margin: 10px 20px;
+    font-size: 1.2rem;
+  }
+}
+

@@ -1,0 +1,47 @@
+.appList {
+  display: flex;
+  flex-direction: column;
+  &__detail{
+    margin-left: 20px;
+    &__name, &__category {
+      margin-bottom: 7px;
+    }
+    &__category, &__rating{
+      font-size: 0.8rem;
+      color: #6b6b6b;
+    }
+    &__rating{
+      font-family: sans-serif;
+    }
+  }
+  &__image {
+    &.odd{
+      img{
+        border-radius: 15px;
+      }
+    }
+    &.even{
+      img{
+        border-radius: 50px;
+      }
+    }
+  }
+  &__index {
+    font-family: sans-serif;
+    width: 40px;
+    padding: 0 10px;
+    text-align: center;
+    font-size: 1.5rem;
+    color: #7f7f7f;
+  }
+  li {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    border-top: 1px #e5e5e5 solid;
+    padding: 10px 0;
+    &:last-child {
+      border-bottom: 1px #e5e5e5 solid; 
+    }
+  }
+}
