@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import './List.scss';
 
-const TopList = ({ list }) => 
+const TopList = ({ list = [] }) => 
   (<div>
     <ul className="appList">
       {
