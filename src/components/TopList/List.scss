@@ -1,6 +1,9 @@
 .appList {
   display: flex;
   flex-direction: column;
+  &.loading {
+    align-items: center;
+  }
   &__detail{
     margin-left: 20px;
     &__name, &__category {
@@ -16,11 +19,19 @@
   }
   &__image {
     &.odd{
+      border-radius: 15px;
+      background-color: #6b6b6b;
+      width: 75px;
+      height: 75px;
       img{
         border-radius: 15px;
       }
     }
     &.even{
+      border-radius: 50px;
+      background-color: #6b6b6b;
+      width: 75px;
+      height: 75px;
       img{
         border-radius: 50px;
       }

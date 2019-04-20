@@ -1,18 +1,21 @@
 import React, { Component } from 'react';
 
-import Recommendation from './components/Recommendation/';
-import TopList from './components/TopList/';
+import RecommendationList from './containers/RecommendationList';
+import ListPagination from './containers/ListPagination';
+import SearchBox from './containers/SearchBox';
 import './App.scss';
 
 class App extends Component {
 
-
+  filter(event) {
+    console.log(event.target.value);
+  }
   render() {
     return (
       <div className="App">
-       <div className="search"><input placeholder="&#xF002; 搜尋" /></div>
-       <Recommendation/>
-       <TopList/>
+        <SearchBox/>
+        <RecommendationList/>
+        <ListPagination/>
       </div>
     );
   }
