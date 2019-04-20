@@ -1,11 +1,15 @@
 import { connect } from 'react-redux';
+import { filterFunction } from '../utils';
 import Recommendation from '../components/Recommendation';
 import * as actions from '../redux/actions';
 
 
 const mapStateToProps = (state) => {
   return {
-    list: state.recommandList
+    list: state.recommandList.filter(
+      filterFunction(state.search.toLowerCase())
+    ),
+    status: state.recommandListStatus,
   }
 }
 

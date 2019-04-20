@@ -1,18 +1,20 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
-import Loader from '../Loading/';
+import {
+  checkNotFoundOrEmpty
+} from '../utils';
 import './Recommendation.scss';
 
-const Recommendation = ({ list, featchData }) => {
+const Recommendation = ({ list, featchData, status }) => {
     useEffect(() => {
       featchData();
     },[]);
-    return (<div className={"recommendation"}>
+    return (<div className="recommendation">
       <h1>推介</h1>
       <ul className={"list"  + ((list.length === 0) ? " loading" : "" )}>
         {
           list.length === 0 ? (
-            <Loader />
+            checkNotFoundOrEmpty(status)
           ) : (
             list.map((item) => (
               <li key={item.id}>

@@ -12,6 +12,7 @@ export const dataSimplifer = ({
     id: category.attributes['im:id'],
     label: category.attributes.label
   },
+  auth: data['im:artist'].label,
   name: data['im:name'].label,
   title: title.label,
   summary: summary.label,
@@ -23,3 +24,16 @@ export const dataSimplifer = ({
     }
   ))
 });
+
+export const filterFunction = (search) => (item) => {
+  const {
+    title,
+    category,
+    summary,
+    auth
+  } = item;
+  return title.toLowerCase().includes(search) ||
+    auth.toLowerCase().includes(search) ||
+    category.label.toLowerCase().includes(search) ||
+    summary.toLowerCase().includes(search)
+}

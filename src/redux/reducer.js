@@ -32,8 +32,7 @@ export default (state = initial, action) => {
         fetchingAppInfo: true
       }
       return init;
-    }, {})
-    console.log(_order);
+    }, {});
     return {
       ...state,
       appInfo: {

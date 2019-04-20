@@ -63,7 +63,6 @@ export function fetchRecommendationList() {
     });
     Services.getRecommandList()
     .then(({ data }) => {
-      console.table( data.feed.entry.map( record => dataSimplifer(record)));
       if (data && data.feed && data.feed.entry) {
         const recommandList = data.feed.entry.map( record => dataSimplifer(record));
         dispatch({
@@ -92,7 +91,6 @@ export function fetchTopList() {
     });
     Services.getTopFreeList()
     .then(({ data }) => {
-      console.table( data.feed.entry.map( record => dataSimplifer(record)));
       if (data && data.feed && data.feed.entry) {
         dispatch({
           type: FETCH_TOP_FREE_LIST_SUCCESS,

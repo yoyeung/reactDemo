@@ -1,22 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
-import Loader from '../Loading/';
+import Rate from 'react-star-ratings';
+import {
+  useLoadMore,
+  checkNotFoundOrEmpty
+} from '../utils';
 import './List.scss';
 
 const TopList = ({ list, featchData, noMoreFetch, fetchMoreTopList, status, featchRateinfo, appInfo }) => {
-  useEffect(() => {
-    const onScroll = () => {
-      if (
-        (window.innerHeight + window.scrollY) >= (document.body.offsetHeight - 200) &&
-        !noMoreFetch
-      ) {
-        fetchMoreTopList();
-      }
-    }
-    featchData();
-    window.addEventListener('scroll', onScroll, false);
-    return () => window.removeEventListener('scroll', onScroll, false);
-  },[]);
+  useLoadMore(fetchMoreTopList, featchData, noMoreFetch);
   useEffect(() => {
     let order = list.reduce(function reduce(init, item) {
       if (!appInfo[item.id]) {
@@ -30,16 +22,12 @@ const TopList = ({ list, featchData, noMoreFetch, fetchMoreTopList, status, feat
    
   },[list])
 
-  function checkNotFoundOrEmpty(status) {
-    if (status === 'SUCCESS' || status === 'FAIL') {
-      return (
-        <div>沒有紀錄</div>
-      )
-    } else {
-      return <Loader />
-    }
+  function extractData(id) {
+    return appInfo[id] || {
+      averageUserRating: 0,
+      userRatingCount: 0
+    };
   }
-
   
   return (<div>
     <ul className={ "appList" + ((list.length === 0) ? " loading" : "" )}>
@@ -51,10 +39,7 @@ const TopList = ({ list, featchData, noMoreFetch, fetchMoreTopList, status, feat
             const {
               averageUserRating = 0,
               userRatingCount = 0
-            } = appInfo[item.id] || {
-              averageUserRating: 0,
-              userRatingCount: 0
-            };
+            } = extractData(item.id);
             return (
               <li key={item.id}>
                 <div className='appList__index'>{(index+1)}</div>
@@ -64,7 +49,13 @@ const TopList = ({ list, featchData, noMoreFetch, fetchMoreTopList, status, feat
                 <div className="appList__detail">
                   <div className='appList__detail__name'>{item.name}</div>
                   <div className='appList__detail__category'>{item.category.label}</div>
-                  <div className='appList__detail__rating'>{averageUserRating} ({userRatingCount})</div>
+                  <div className='appList__detail__rating'>
+                    <Rate rating={averageUserRating}
+                    starRatedColor='#fe9501'
+                    numberOfStars={5}
+                    starDimension='13px'
+                    starSpacing='2px'
+                    name='rating'/> ({userRatingCount})</div>
                 </div>
               </li>
             )
