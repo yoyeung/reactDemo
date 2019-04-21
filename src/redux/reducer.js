@@ -94,6 +94,9 @@ export default (state = initial, action) => {
       topListStatus: 'FAIL'
     }
   case SHOW_MORE:
+    if (state.showNoOfItem >= state.topList.length) {
+      return state;
+    }
     return {
       ...state,
       showNoOfItem: state.showNoOfItem + noOfDisplay

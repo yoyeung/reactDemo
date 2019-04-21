@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
+import RowListItem from '../commons/RowListItem';
 import {
   checkNotFoundOrEmpty
 } from '../utils';
@@ -17,13 +18,7 @@ const Recommendation = ({ list, featchData, status }) => {
             checkNotFoundOrEmpty(status)
           ) : (
             list.map((item) => (
-              <li key={item.id}>
-                <div className='recommendation__image'>
-                  <img src={item.images[2].href} alt={item.name}></img>
-                </div>
-                <div className='recommendation__name'>{item.name}</div>
-                <div className='recommendation__category'>{item.category.label}</div>
-              </li>
+              <RowListItem item={item} key={item.id} />
             ))
           )
         }
@@ -34,7 +29,9 @@ const Recommendation = ({ list, featchData, status }) => {
 
 
 Recommendation.propTypes = {
-  list: PropTypes.array.isRequired
+  list: PropTypes.array.isRequired,
+  featchData: PropTypes.func.isRequired,
+  status: PropTypes.string
 }
 
 export default Recommendation;

@@ -17,23 +17,27 @@
       font-family: sans-serif;
     }
   }
-  &__image {
-    &.odd{
-      border-radius: 15px;
-      background-color: #6b6b6b;
-      width: 75px;
-      height: 75px;
-      img{
+  li{
+    &:nth-child(odd) {
+      .appList__image {
         border-radius: 15px;
+        background-color: #6b6b6b;
+        width: 75px;
+        height: 75px;
+        img{
+          border-radius: 15px;
+        }
       }
     }
-    &.even{
-      border-radius: 50px;
-      background-color: #6b6b6b;
-      width: 75px;
-      height: 75px;
-      img{
+    &:nth-child(even) {
+      .appList__image {
         border-radius: 50px;
+        background-color: #6b6b6b;
+        width: 75px;
+        height: 75px;
+        img{
+          border-radius: 50px;
+        }
       }
     }
   }

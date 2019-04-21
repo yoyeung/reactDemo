@@ -9,7 +9,7 @@ const mapStateToProps = (state) => {
       .filter(
         item => item.title.toLowerCase().includes(state.search.toLowerCase())
       ),
-    noMoreFetch: state.topList.length === state.showNoOfItem,
+    moreFetch: state.topList.length > state.showNoOfItem,
     status: state.topListStatus,
     appInfo: state.appInfo
   }

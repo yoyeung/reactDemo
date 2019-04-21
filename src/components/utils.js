@@ -1,20 +1,23 @@
 import React, { useEffect } from 'react';
 
-import Loader from './Loading/';
+import Loader from './commons/Loading';
 
-export function useLoadMore(fetchMoreTopList, featchData, noMoreFetch) {
-  useEffect(() => {
-    const onScroll = () => {
-      if (
-        (window.innerHeight + window.scrollY) >= (document.body.offsetHeight - 200) &&
-        !noMoreFetch
-      ) {
-        fetchMoreTopList();
-      }
+export function useLoadMore(fetchMoreTopList, featchData, moreFetch) {
+  const onScroll = () => {
+    if (
+      (window.innerHeight + window.scrollY) >= (document.body.offsetHeight - 200) &&
+      moreFetch
+    ) {
+      fetchMoreTopList();
     }
-    featchData();
+  }
+  useEffect(() => {
     window.addEventListener('scroll', onScroll, false);
     return () => window.removeEventListener('scroll', onScroll, false);
+  },[moreFetch]);
+
+  useEffect(() => {
+    featchData();  
   },[]);
 }
 
